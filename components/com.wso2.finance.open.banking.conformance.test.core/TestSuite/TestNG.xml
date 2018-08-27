@@ -3,7 +3,7 @@
 <suite name="sampleSuite">
     <test name="sampleTest">
         <classes>
-            <class name="testrunners.SampleTestRunner"></class>
+            <class name="com.wso2.finance.open.banking.conformance.test.core.testrunners.SampleTestRunner"></class>
         </classes>
     </test>
 </suite>
