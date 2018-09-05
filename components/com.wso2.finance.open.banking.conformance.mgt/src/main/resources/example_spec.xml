@@ -26,9 +26,10 @@
         <AttributeGroup groupName="default" title="Server Configuration">
             <Attribute name="base_url">
                 <label>Base URL</label>
-                <attributeType>URL</attributeType>
+                <attributeType>String</attributeType>
                 <helpText>base url of the API</helpText>
-                <validationRegex>$</validationRegex>
+                <validationRegex>(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)</validationRegex>
+                <defaultValue>https://api-openbanking.wso2.com/OpenBankAPI</defaultValue>
             </Attribute>
         </AttributeGroup>
     </attributeGroups>
@@ -47,6 +48,16 @@
                 uri="components/com.wso2.finance.open.banking.conformance.test.core/src/main/resources/features/v1_0_0/opendata/atms.feature">
             <title>ATMs endpoint</title>
             <description>Check ATM information of OBank</description>
+            <attributeGroups>
+                <AttributeGroup groupName="uri" title="URI Parameters">
+                    <Attribute name="bank_id">
+                        <label>Bank ID</label>
+                        <attributeType>String</attributeType>
+                        <helpText>Bank ID of the ATM</helpText>
+                        <defaultValue>bank-4020-01</defaultValue>
+                    </Attribute>
+                </AttributeGroup>
+            </attributeGroups>
         </Feature>
     </features>
 </ns2:Specification>
