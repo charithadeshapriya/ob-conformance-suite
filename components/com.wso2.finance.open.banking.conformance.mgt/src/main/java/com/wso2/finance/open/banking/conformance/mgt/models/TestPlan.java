@@ -31,27 +31,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "TestPlan")
 public class TestPlan {
 
-    @XmlElement(name = "Specification")
-    private List<Specification> specifications;
+    @XmlElement(name = "API")
+    private List<API> apis;
 
     public TestPlan() {
 
     }
 
     /**
-     * @param specifications
+     * @param apis
      */
-    public  TestPlan(List<Specification> specifications)
+    public  TestPlan(List<API> apis)
     {
-        this.specifications = specifications;
+        this.apis = apis;
     }
 
     /**
      * @return
      */
-    public List<Specification> getSpecifications() {
+    public List<API> getAPIs() {
 
-        return specifications;
+        return apis;
     }
 
     /**
@@ -61,13 +61,13 @@ public class TestPlan {
      * @return
      * @throws NoSuchElementException
      */
-    public Specification getSpecification(String specName, String specVersion) throws NoSuchElementException {
-        int len=specifications.size();
+    public API getAPI(String specName, String specVersion) throws NoSuchElementException {
+        int len=apis.size();
         for(int i=0; i<len; i++) {
-            if (specifications.get(i).getName().equals(specName) && specifications.get(i).getVersion().equals(specVersion)){
-                return specifications.get(i);
+            if (apis.get(i).getName().equals(specName) && apis.get(i).getVersion().equals(specVersion)){
+                return apis.get(i);
             }
         }
-        throw new NoSuchElementException("Invalid specification name or version.");
+        throw new NoSuchElementException("Invalid API name or version.");
     }
 }

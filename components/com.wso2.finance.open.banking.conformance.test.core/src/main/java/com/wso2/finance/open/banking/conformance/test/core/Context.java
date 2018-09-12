@@ -99,7 +99,7 @@ public class Context {
     public String getFeatureAttribute(String specName, String specVersion, String featureUri,
                                          String attribGroupName, String attribName){
 
-        return testPlan.getSpecification(specName).getFeature(featureUri).getAttribute(attribGroupName,attribName);
+        return testPlan.getAPI(specName).getFeature(featureUri).getAttribute(attribGroupName,attribName);
 
     }
 
@@ -115,7 +115,7 @@ public class Context {
                                       String attribGroupName, String attribName){
 
         String attrib;
-        attrib = testPlan.getSpecification(specName).getAttribute(attribGroupName,attribName);
+        attrib = testPlan.getAPI(specName).getAttribute(attribGroupName,attribName);
 
         return attrib;
     }

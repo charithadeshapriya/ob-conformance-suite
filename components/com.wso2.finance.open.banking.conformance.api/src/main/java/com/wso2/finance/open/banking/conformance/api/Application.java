@@ -17,7 +17,7 @@
 package com.wso2.finance.open.banking.conformance.api;
 
 import com.wso2.finance.open.banking.conformance.mgt.helpers.XmlHelper;
-import com.wso2.finance.open.banking.conformance.mgt.models.Specification;
+import com.wso2.finance.open.banking.conformance.mgt.models.API;
 import org.wso2.msf4j.MicroservicesRunner;
 
 import java.io.File;
@@ -39,18 +39,18 @@ public class Application {
     private static void loadResources(){
 
         try {
-            Map<String,Specification> specifications = new HashMap();
-            specifications.put("specExample", XmlHelper.unmarshallSepcificationXML(
+            Map<String,API> apis = new HashMap();
+            apis.put("specExample", XmlHelper.unmarshallSepcificationXML(
                     new File("components/" +
                             "com.wso2.finance.open.banking.conformance.mgt/src/main/resources/example_spec.xml")));
-            specifications.put("specExample-2", XmlHelper.unmarshallSepcificationXML(
+            apis.put("specExample-2", XmlHelper.unmarshallSepcificationXML(
                     new File("components/" +
                             "com.wso2.finance.open.banking.conformance.mgt/src/main/resources/example_spec-2.xml")));
-            specifications.put("AccountsInformation", XmlHelper.unmarshallSepcificationXML(
+            apis.put("AccountsInformation", XmlHelper.unmarshallSepcificationXML(
                     new File("components/" +
                             "com.wso2.finance.open.banking.conformance.mgt/src/main/resources/accountsinformation.xml")));
 
-            ApplicationDataHolder.getInstance().setSpecifications(specifications);
+            ApplicationDataHolder.getInstance().setAPIs(apis);
 
         } catch (JAXBException e) {
             e.printStackTrace();

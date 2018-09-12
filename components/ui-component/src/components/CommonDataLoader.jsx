@@ -20,7 +20,7 @@ import React from 'react';
 import RequestBuilder from "../utils/RequestBuilder";
 import axios from 'axios';
 import {connect} from "react-redux";
-import {addSpecification, addTestPlan, clearTestPlan} from "../actions";
+import {addAPI, addTestPlan, clearTestPlan} from "../actions";
 
 const client = new RequestBuilder();
 
@@ -34,10 +34,10 @@ class CommonDataLoader extends React.Component {
     }
 
     componentDidMount() {
-        axios.all([client.getSpecifications(), client.getTestPlans()]).then(
+        axios.all([client.getAPIs(), client.getTestPlans()]).then(
             axios.spread((specs, plans) => {
                 specs.data.forEach((spec) => {
-                    this.props.dispatch(addSpecification(spec.name, spec));
+                    this.props.dispatch(addAPI(spec.name, spec));
                 });
 
                 var testplans = plans.data;

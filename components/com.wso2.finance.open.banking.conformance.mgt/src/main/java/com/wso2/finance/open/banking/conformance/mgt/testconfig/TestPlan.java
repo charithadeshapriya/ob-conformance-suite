@@ -25,24 +25,24 @@ import java.util.Map;
 
 public class TestPlan {
 
-    private Map<String,Specification> specifications;
+    private Map<String,API> apis;
 
     private Date lastRun;
 
     public TestPlan(){}
 
-    public TestPlan(Map<String,Specification> specificationMap)
+    public TestPlan(Map<String,API> apiMap)
     {
-        this.specifications = specificationMap;
+        this.apis = apiMap;
     }
 
-    public Specification getSpecification(String key)
+    public API getAPI(String key)
     {
-        return specifications.get(key);
+        return apis.get(key);
     }
 
-    public List<Specification> getSpecifications(){
-        return new ArrayList(specifications.values());
+    public List<API> getAPIs(){
+        return new ArrayList(apis.values());
     }
 
     public Date getLastRun() {

@@ -21,7 +21,7 @@ package com.wso2.finance.open.banking.conformance.test.core.runner;
 import com.google.gson.JsonObject;
 import com.wso2.finance.open.banking.conformance.mgt.models.AttributeGroup;
 import com.wso2.finance.open.banking.conformance.mgt.testconfig.Feature;
-import com.wso2.finance.open.banking.conformance.mgt.testconfig.Specification;
+import com.wso2.finance.open.banking.conformance.mgt.testconfig.API;
 import com.wso2.finance.open.banking.conformance.mgt.testconfig.TestPlan;
 import com.wso2.finance.open.banking.conformance.test.core.Context;
 import com.wso2.finance.open.banking.conformance.test.core.testrunners.FeatureRunner;
@@ -50,36 +50,36 @@ public class TestPlanRunnerInstance extends Thread{
         this.resultQueue = resultQueue;
         this.status = RUNNER_STATE.NOT_STARTED;
         //Initialize Specs in Data Structure
-        for(Specification spec : this.testPlan.getSpecifications()){
+        for(API spec : this.testPlan.getAPIs()){
             this.formattedResult.put(spec.getName(), new ArrayList<>());
         }
     }
 
-    private void queueResult(JsonObject result, Specification specification){
+    private void queueResult(JsonObject result, API api){
         TestPlanFeatureResult testPlanFeatureResult = new TestPlanFeatureResult();
         testPlanFeatureResult.featureResult = result;
-        testPlanFeatureResult.specName = specification.getName();
+        testPlanFeatureResult.specName = api.getName();
         this.resultQueue.add(testPlanFeatureResult);
     }
 
-    private void processSpec(Specification specification){
+    private void processSpec(API api){
         List<JsonObject> featureResults = new ArrayList();
-        Context.getInstance().setSpecContext(specification.getName(), specification.getVersion());
+        Context.getInstance().setSpecContext(api.getName(), api.getVersion());
         Context.getInstance().setRunnerInstance(this);
-        for(Feature feature : specification.getFeatures()){
+        for(Feature feature : api.getFeatures()){
             FeatureRunner featureRunner = new FeatureRunner(feature);
             JsonObject featureResult = featureRunner.runFeature();
             featureResults.add(featureResult);
-            this.queueResult(featureResult,specification);
+            this.queueResult(featureResult,api);
         }
-        formattedResult.put(specification.getName(),featureResults);
+        formattedResult.put(api.getName(),featureResults);
         Context.getInstance().clearSpecContext();
     }
 
     public void run(){
         this.status = RUNNER_STATE.RUNNING;
-        for(Specification specification : this.testPlan.getSpecifications()){
-            this.processSpec(specification);
+        for(API api : this.testPlan.getAPIs()){
+            this.processSpec(api);
         }
         this.status = RUNNER_STATE.DONE;
         this.testPlan.setLastRun(new Date());

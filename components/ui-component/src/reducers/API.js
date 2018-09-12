@@ -22,11 +22,11 @@ const initialState = {
 };
 
 
-const specifications = (state = initialState, action) => {
+const apis = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_SPEC':
             return {
-                specs: {...state.specs, [action.name] : action.specification},
+                specs: {...state.specs, [action.name] : action.api},
                 selected: [...state.selected]
             };
         case 'TOGGLE_SPEC':
@@ -42,7 +42,7 @@ const specifications = (state = initialState, action) => {
             };
 
         case 'UPDATE_SPEC':
-            state.specs[action.name] = action.specification;
+            state.specs[action.name] = action.api;
             return {
                 ...state
             };
@@ -56,5 +56,5 @@ const specifications = (state = initialState, action) => {
     }
 };
 
-export default specifications;
+export default apis;
 

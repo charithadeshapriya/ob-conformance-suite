@@ -17,10 +17,10 @@
   ~ under the License.
   -->
 
-<ns2:Specification xmlns:ns2="com.wso2.finance.open.banking.conformance.mgt.models" name="AccountsInformation" version="v2.0.0">
+<ns2:API xmlns:ns2="com.wso2.finance.open.banking.conformance.mgt.models" name="AccountsInformation" version="v2.0.0">
     <title>AccountsInformation</title>
     <description>API to get Accounts Information of a bank customer</description>
-    <specificationUri>https://github.com/OpenBankingUK/</specificationUri>
+    <apiUri>https://github.com/OpenBankingUK/</apiUri>
     <attributeGroups>
         <AttributeGroup groupName="default" title="Server Configuration">
             <Attribute name="base_url">
@@ -84,4 +84,4 @@
             </Scenarios>
         </Feature>
     </features>
-</ns2:Specification>
+</ns2:API>

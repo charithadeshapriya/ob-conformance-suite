@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Model class representing a single Specification.
+ * Model class representing a single API.
  */
-@XmlRootElement(namespace = "com.wso2.finance.open.banking.conformance.mgt.models", name = "Specification")
-public class Specification {
+@XmlRootElement(namespace = "com.wso2.finance.open.banking.conformance.mgt.models", name = "API")
+public class API {
 
     @XmlAttribute
     private String name;
@@ -40,7 +40,7 @@ public class Specification {
     @XmlElement
     private String description;
     @XmlElement
-    private String specificationUri;
+    private String apiUri;
     @XmlElementWrapper(name = "attributeGroups")
     @XmlElement(name = "AttributeGroup")
     private List<AttributeGroup> attributeGroups;
@@ -51,7 +51,7 @@ public class Specification {
     @XmlElement(name = "Feature")
     private List<Feature> features;
 
-    public Specification() {
+    public API() {
 
     }
 
@@ -60,19 +60,19 @@ public class Specification {
      * @param version
      * @param title
      * @param description
-     * @param specificationUri
+     * @param apiUri
      * @param attributeGroups
      * @param testingVectors
      * @param features
      */
-    public Specification(String name, String version, String title, String description, String specificationUri,
+    public API(String name, String version, String title, String description, String apiUri,
                          List<AttributeGroup> attributeGroups, List<Vector> testingVectors, List<Feature> features) {
 
         this.name = name;
         this.version = version;
         this.title = title;
         this.description = description;
-        this.specificationUri = specificationUri;
+        this.apiUri = apiUri;
         this.attributeGroups = attributeGroups;
         this.testingVectors = testingVectors;
         this.features = features;
@@ -105,9 +105,9 @@ public class Specification {
     /**
      * @return
      */
-    public String getSpecificationUri() {
+    public String getAPIUri() {
 
-        return specificationUri;
+        return apiUri;
     }
 
     /**

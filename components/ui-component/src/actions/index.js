@@ -16,34 +16,34 @@
  * under the License.
  */
 
-export const addSpecification = (name,spec) => ({
+export const addAPI = (name,spec) => ({
     type: 'ADD_SPEC',
     name: name,
-    specification: spec
+    api: spec
 });
 
-export const updateSpecification = (name,spec) => ({
+export const updateAPI = (name,spec) => ({
     type: 'UPDATE_SPEC',
     name: name,
-    specification: spec
+    api: spec
 });
 
-export const toggleSpecification = name => ({
+export const toggleAPI = name => ({
     type: 'TOGGLE_SPEC',
     name: name
 });
 
-export const clearSelectedSpecifications = () => ({
+export const clearSelectedAPIs = () => ({
     type: 'CLEAR_SELECTED_SPECS'
 });
 
-export const clearSpecifications = () => ({
+export const clearAPIs = () => ({
     type: 'CLEAR_SPECS',
 });
 
-export const addSpecificationToTestValues = (spec) => ({
+export const addAPIToTestValues = (spec) => ({
     type: 'ADD_SPEC_TO_TESTVALUES',
-    specification: spec
+    api: spec
 });
 
 export const toggleVector = (name,vector) => ({

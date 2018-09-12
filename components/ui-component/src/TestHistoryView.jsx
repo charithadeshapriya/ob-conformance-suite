@@ -27,9 +27,9 @@ const client = new RequestBuilder();
 
 
 
-const TestPlanRow = connect((state) => ({specifications: state.specifications.specs}))(({testPlan,specifications}) => (
+const TestPlanRow = connect((state) => ({apis: state.apis.specs}))(({testPlan,apis}) => (
     <tr>
-        <td>{Object.keys(testPlan.testPlan.specifications).map((key) => <p>{specifications[key].title} {specifications[key].version}</p>)}</td>
+        <td>{Object.keys(testPlan.testPlan.apis).map((key) => <p>{apis[key].title} {apis[key].version}</p>)}</td>
         <td>{testPlan.testId}</td>
         <td>{testPlan.testPlan.lastRun}</td>
         <td><b>{testPlan.status}</b></td>
@@ -65,7 +65,7 @@ class TestHistoryView extends React.Component{
                     <Table striped bordered condensed hover>
                         <thead>
                             <tr>    
-                                <th className={"tableHead"}>Specifications</th>
+                                <th className={"tableHead"}>API</th>
                                 <th className={"tableHead"}>Test ID</th>
                                 <th className={"tableHead"}>Last Test Run Date</th>
                                 <th className={"tableHead"}>Test Status</th>

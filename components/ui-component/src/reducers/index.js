@@ -17,12 +17,12 @@
  */
 
 import {combineReducers} from 'redux'
-import specifications from './specifications'
+import apis from './API'
 import testvalues from './testvalues'
 import testplans from './testplans'
 
 export default combineReducers({
-    specifications,
+    apis,
     testvalues,
     testplans
 });

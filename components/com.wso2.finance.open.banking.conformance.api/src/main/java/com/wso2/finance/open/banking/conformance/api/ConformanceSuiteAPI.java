@@ -17,7 +17,7 @@
 package com.wso2.finance.open.banking.conformance.api;
 
 import com.google.gson.Gson;
-import com.wso2.finance.open.banking.conformance.api.dao.SpecificationDAO;
+import com.wso2.finance.open.banking.conformance.api.dao.APIDAO;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -33,21 +33,21 @@ import javax.ws.rs.PathParam;
  *
  * @since 1.0.0-SNAPSHOT
  */
-@Path("/specifications")
+@Path("/APIs")
 public class ConformanceSuiteAPI {
 
     private Gson gson = new Gson();
-    private SpecificationDAO  specificationDAO = new SpecificationDAO();
+    private APIDAO  apiDAO = new APIDAO();
 
     @GET
     @Path("/all")
     public String get() {
-        return gson.toJson(specificationDAO.getBasicSpecifications());
+        return gson.toJson(apiDAO.getBasicAPIs());
     }
 
     @GET
     @Path("/single/{name}")
-    public String getSpecification(@PathParam("name") String name) {
-        return gson.toJson(specificationDAO.getSpecification(name));
+    public String getAPI(@PathParam("name") String name) {
+        return gson.toJson(apiDAO.getAPI(name));
     }
 }

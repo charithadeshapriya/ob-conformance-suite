@@ -48,7 +48,7 @@ export default class TestPlanReduxHelper {
             version: spec.version,
             features: selectedFeatures,
             testingVectors: spec.selectedVectors,
-            attributeGroups: spec.selectedValues.specification
+            attributeGroups: spec.selectedValues.api
         };
     }
 
@@ -59,7 +59,7 @@ export default class TestPlanReduxHelper {
             specs[key] = TestPlanReduxHelper.buildTestPlanSpecFromTestValues(testvalues.specs[key])
         });
         return {
-            "specifications" : specs
+            "apis" : specs
         }
     }
 

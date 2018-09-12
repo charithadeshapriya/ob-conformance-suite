@@ -17,11 +17,11 @@
   ~ under the License.
   -->
 
-<ns2:Specification xmlns:ns2="com.wso2.finance.open.banking.conformance.mgt.models" name="specExample" version="v1.0">
+<ns2:API xmlns:ns2="com.wso2.finance.open.banking.conformance.mgt.models" name="specExample" version="v1.0">
     <title>OpenBankAPI</title>
     <description>This API exposes open data of a bank such as the branch locations, ATM locations, and supporting products.
     </description>
-    <specificationUri>https://github.com/OpenBankingUK/</specificationUri>
+    <apiUri>https://github.com/OpenBankingUK/</apiUri>
     <attributeGroups>
         <AttributeGroup groupName="default" title="Server Configuration">
             <Attribute name="base_url">
@@ -113,4 +113,4 @@
             </Scenarios>
         </Feature>
     </features>
-</ns2:Specification>
+</ns2:API>

@@ -18,7 +18,7 @@
 
 package com.wso2.finance.open.banking.conformance.mgt.helpers;
 
-import com.wso2.finance.open.banking.conformance.mgt.models.Specification;
+import com.wso2.finance.open.banking.conformance.mgt.models.API;
 import com.wso2.finance.open.banking.conformance.mgt.models.TestPlan;
 
 import java.io.File;
@@ -35,12 +35,12 @@ import javax.xml.bind.Unmarshaller;
  */
 public class XmlHelper {
 
-    public static void marshallSpecification(Specification specification, OutputStream outStream) throws JAXBException {
+    public static void marshallAPI(API api, OutputStream outStream) throws JAXBException {
 
-        JAXBContext context = JAXBContext.newInstance(Specification.class);
+        JAXBContext context = JAXBContext.newInstance(API.class);
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        marshaller.marshal(specification, outStream);
+        marshaller.marshal(api, outStream);
     }
 
     public static  void marshallTestPlan(TestPlan testPlan, OutputStream outStream) throws JAXBException {
@@ -50,12 +50,12 @@ public class XmlHelper {
         marshaller.marshal(testPlan, outStream);
     }
 
-    public static Specification unmarshallSepcificationXML(File xmlDocument) throws JAXBException,
+    public static API unmarshallSepcificationXML(File xmlDocument) throws JAXBException,
             FileNotFoundException {
 
-        JAXBContext context = JAXBContext.newInstance(Specification.class);
+        JAXBContext context = JAXBContext.newInstance(API.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        return (Specification) unmarshaller.unmarshal(new FileReader(xmlDocument));
+        return (API) unmarshaller.unmarshal(new FileReader(xmlDocument));
     }
 
     public static TestPlan unmarshallTestPlanXML(File xmlDocument) throws JAXBException,

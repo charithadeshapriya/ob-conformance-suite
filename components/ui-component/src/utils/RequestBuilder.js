@@ -24,11 +24,11 @@ export default class RequestBuilder {
         this.base_url = "http://localhost:9090/";
     }
 
-    getSpecifications() {
+    getAPIs() {
         return axios.get(this.base_url + "specifications/all");
     }
 
-    getSingleSpecification(name) {
+    getSingleAPI(name) {
         return axios.get(this.base_url + "specifications/single/" + name);
     }
 

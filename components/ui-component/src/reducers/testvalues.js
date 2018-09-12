@@ -47,7 +47,7 @@ function initSpec(spec) {
         selectedVectors: spec.testingVectors.map((vector => vector.tag)),
         selectedFeatures: spec.features.map((feature => feature.uri.path)),
         selectedValues: {
-            specification : (spec.attributeGroups ? generateValueMap(spec.attributeGroups) : {}),
+            api : (spec.attributeGroups ? generateValueMap(spec.attributeGroups) : {}),
             features : (generateFeaturesValueMap(spec.features))
         }
     }
@@ -60,7 +60,7 @@ const testvalues = (state = initialState, action) => {
             return {
                 specs: {
                     ...state.specs,
-                    [action.specification.name]: initSpec(action.specification)
+                    [action.api.name]: initSpec(action.api)
                 }
             };
         case 'TOGGLE_VECTOR':
@@ -95,10 +95,10 @@ const testvalues = (state = initialState, action) => {
                         ...state.specs[action.specName],
                         selectedValues: {
                             ...state.specs[action.specName].selectedValues,
-                            specification:{
-                                ...state.specs[action.specName].selectedValues.specification,
+                            api:{
+                                ...state.specs[action.specName].selectedValues.api,
                                 [action.groupName]: {
-                                    ...state.specs[action.specName].selectedValues.specification[action.groupName],
+                                    ...state.specs[action.specName].selectedValues.api[action.groupName],
                                     [action.attributeName]: (action.value)
                                 }
                             }

@@ -21,10 +21,10 @@ import AppHeader from "./partials/AppHeader";
 import AppBreadcrumbs from "./partials/AppBreadcrumbs";
 import {ListGroup, ListGroupItem, Glyphicon, Button} from 'react-bootstrap';
 import {connect} from 'react-redux'
-import {addSpecification, toggleSpecification, clearSpecifications} from "./actions";
+import {addAPI, toggleAPI, clearAPIs} from "./actions";
 import {Link} from 'react-router-dom'
 
-class SpecificationSelectView extends React.Component {
+class APISelectView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -42,27 +42,27 @@ class SpecificationSelectView extends React.Component {
         )
     }
 
-    renderSpec(specification) {
+    renderSpec(api) {
         return (
-            <ListGroupItem key={specification.name} onClick={() => {this.toggleSpec(specification)}} active={this.isSpecSelected(specification.name)}>
+            <ListGroupItem key={api.name} onClick={() => {this.toggleSpec(api)}} active={this.isSpecSelected(api.name)}>
                 <div className="pull-right">
-                    <i className={"fas fa-2x fa-" + (this.isSpecSelected(specification.name) ? "check-square" : "square")}></i>
+                    <i className={"fas fa-2x fa-" + (this.isSpecSelected(api.name) ? "check-square" : "square")}></i>
                 </div>
-                <h4>{specification.title} {specification.version}</h4>
-                <p>{specification.description}</p>
+                <h4>{api.title} {api.version}</h4>
+                <p>{api.description}</p>
             </ListGroupItem>);
     }
 
     isSpecSelected(name){
-        return (this.props.specifications.selected.includes(name));
+        return (this.props.apis.selected.includes(name));
     }
 
-    toggleSpec(specification) {
-        this.props.dispatch(toggleSpecification(specification.name))
+    toggleSpec(api) {
+        this.props.dispatch(toggleAPI(api.name))
     }
 
     isEmptySelection() {
-        return this.props.specifications.selected.length === 0;
+        return this.props.apis.selected.length === 0;
     }
 
     renderMain() {
@@ -72,7 +72,7 @@ class SpecificationSelectView extends React.Component {
                 <hr/>
                 <ListGroup>
                     <ListGroupItem disabled><b>Available APIs</b></ListGroupItem>
-                    {Object.values(this.props.specifications.specs).map((spec) => {
+                    {Object.values(this.props.apis.specs).map((spec) => {
                         return this.renderSpec(spec)
                     })}
                 </ListGroup>
@@ -87,5 +87,5 @@ class SpecificationSelectView extends React.Component {
 }
 
 export default connect((state) =>
-    ({specifications: state.specifications}))
-(SpecificationSelectView);
+    ({apis: state.apis}))
+(APISelectView);

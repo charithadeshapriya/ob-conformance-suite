@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Model class representing attributes required for a Specification or Feature.
+ * Model class representing attributes required for a API or Feature.
  */
 @XmlRootElement(name = "Attribute")
 public class Attribute {

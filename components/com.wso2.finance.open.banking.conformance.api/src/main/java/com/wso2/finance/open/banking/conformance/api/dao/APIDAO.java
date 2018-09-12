@@ -19,36 +19,36 @@
 package com.wso2.finance.open.banking.conformance.api.dao;
 
 import com.wso2.finance.open.banking.conformance.api.ApplicationDataHolder;
-import com.wso2.finance.open.banking.conformance.api.dto.BasicSpecificationDTO;
-import com.wso2.finance.open.banking.conformance.mgt.models.Specification;
+import com.wso2.finance.open.banking.conformance.api.dto.BasicAPIDTO;
+import com.wso2.finance.open.banking.conformance.mgt.models.API;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * DTO for getting information on Specifications
+ * DTO for getting information on APIs
  */
-public class SpecificationDAO {
+public class APIDAO {
 
-    private Map<String, Specification> specifications = null;
+    private Map<String, API> apis = null;
 
-    public SpecificationDAO() {
+    public APIDAO() {
 
-        this.specifications = ApplicationDataHolder.getInstance().getSpecifications();
+        this.apis = ApplicationDataHolder.getInstance().getAPIs();
     }
 
-    public List<BasicSpecificationDTO> getBasicSpecifications() {
+    public List<BasicAPIDTO> getBasicAPIs() {
 
-        return this.specifications.values().stream().map(specification ->
-                new BasicSpecificationDTO(specification.getName(),
-                        specification.getTitle(), specification.getVersion(),
-                        specification.getDescription(), specification.getSpecificationUri())
+        return this.apis.values().stream().map(api ->
+                new BasicAPIDTO(api.getName(),
+                api.getTitle(), api.getVersion(),
+                api.getDescription(), api.getAPIUri())
         ).collect(Collectors.toList());
     }
 
-    public Specification getSpecification(String key) {
+    public API getAPI(String key) {
 
-        return this.specifications.get(key);
+        return this.apis.get(key);
     }
 }

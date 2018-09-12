@@ -23,7 +23,7 @@ import {ListGroup, ListGroupItem, Panel, Row, Col, Popover, OverlayTrigger, Butt
 import {toggleVector, toggleFeature} from "../actions";
 import AttributeGroup from "./AttributeGroup";
 
-const ScenariodataRow = connect((state) => ({specifications: state.specifications.specs}))(({scenario}) => (
+const ScenariodataRow = connect((state) => ({apis: state.apis.specs}))(({scenario}) => (
     <tr>
         <td>{scenario.scenarioName}</td>
         <td>{scenario.specName}</td>
@@ -88,7 +88,7 @@ export const Vector = connect((state) => ({testvalues: state.testvalues}))(({tes
 ));
 
 
-export const Specification = ({spec,selectElement}) => (
+export const API = ({spec,selectElement}) => (
     <ListGroup>
         <ListGroupItem key={"root-spec"} onClick={() => {selectElement(spec.name)}}>
             <div className="pull-right">
@@ -103,14 +103,14 @@ export const Specification = ({spec,selectElement}) => (
     </ListGroup>
 );
 
-export const SpecificationEditor = ({spec}) => (
+export const APIEditor = ({spec}) => (
     <Panel>
         <Panel.Heading>
             <Panel.Title componentClass="h3">Configure {spec.title} {spec.version} Test</Panel.Title>
         </Panel.Heading>
         <Panel.Body>
             <div id={"attributeGroups"}>
-                {spec.attributeGroups.map((group) => <AttributeGroup scope={"specification"} specName={spec.name} group={group} key={group.groupName}/>)}
+                {spec.attributeGroups.map((group) => <AttributeGroup scope={"api"} specName={spec.name} group={group} key={group.groupName}/>)}
             </div>
             <br/>
             <div id={"features"}>

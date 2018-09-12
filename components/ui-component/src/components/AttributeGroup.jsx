@@ -107,7 +107,7 @@ class AttributeGroup extends React.Component {
 
     updateChange(attributeName,value){
         switch(this.props.scope){
-            case "specification":
+            case "api":
                 this.props.dispatch(setSpecValue(this.props.specName,this.props.group.groupName,attributeName,value));
                 return;
             case "feature":
@@ -118,8 +118,8 @@ class AttributeGroup extends React.Component {
 
     getValue(attributeName){
         switch(this.props.scope){
-            case "specification":
-                return this.props.testvalues.specs[this.props.specName].selectedValues.specification[this.props.group.groupName][attributeName];
+            case "api":
+                return this.props.testvalues.specs[this.props.specName].selectedValues.api[this.props.group.groupName][attributeName];
             case "feature":
                 return this.props.testvalues.specs[this.props.specName].selectedValues.features[this.props.featureName][this.props.group.groupName][attributeName];
 

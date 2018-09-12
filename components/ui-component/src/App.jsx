@@ -18,7 +18,7 @@
 
 import React from 'react'
 import {Switch, Route} from 'react-router-dom';
-import SpecificationSelectView from "./SpecificationSelectView";
+import APISelectView from "./APISelectView";
 import TestConfigurationView from "./TestConfigurationView";
 import TestHistoryView from "./TestHistoryView";
 import TestReportView from "./TestReportView";
@@ -34,7 +34,7 @@ const App = () => (
         <CommonDataLoader>
             <Switch>
                 <Route exact path='/' component={TestHistoryView}/>
-                <Route exact path='/tests/new' component={SpecificationSelectView}/>
+                <Route exact path='/tests/new' component={APISelectView}/>
                 <Route exact path='/tests/new/configure' component={TestConfigurationView}/>
                 <Route exact path='/tests/report/:uuid' component={TestReportView}/>
                 <Route exact path='/tests/running/:uuid' component={TestReportView}/>

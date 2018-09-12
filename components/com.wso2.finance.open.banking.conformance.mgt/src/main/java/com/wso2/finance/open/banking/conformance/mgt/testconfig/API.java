@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 
-public class Specification {
+public class API {
 
     private String name;
     private String version;
@@ -31,9 +31,9 @@ public class Specification {
     private Map<String, Map<String,String>> attributeGroups;
     private List<String> testingVectors;
 
-    public Specification(){}
+    public API(){}
 
-    public Specification(String name, String version, Map<String, Feature> features,
+    public API(String name, String version, Map<String, Feature> features,
                          Map<String, Map<String,String>> attributeGroups,  List<String> testingVectors){
         this.name = name;
         this.version = version;

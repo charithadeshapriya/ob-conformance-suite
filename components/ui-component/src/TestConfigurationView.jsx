@@ -21,12 +21,12 @@ import AppHeader from "./partials/AppHeader";
 import RequestBuilder from './utils/RequestBuilder';
 import {withRouter} from 'react-router-dom'
 import { Grid, Row, Col, Button} from 'react-bootstrap';
-import {updateSpecification,addSpecificationToTestValues,addTestPlan,clearTestValues,clearSelectedSpecifications} from "./actions";
+import {updateAPI,addAPIToTestValues,addTestPlan,clearTestValues,clearSelectedAPIs} from "./actions";
 import AppBreadcrumbs from "./partials/AppBreadcrumbs";
 import {connect} from 'react-redux'
 import TestPlanReduxHelper from './utils/TestPlanReduxHelper'
 import axios from 'axios';
-import {Specification, SpecificationEditor} from "./components/TestPlanComponents";
+import {API, APIEditor} from "./components/TestPlanComponents";
 
 const client = new RequestBuilder();
 
@@ -44,17 +44,17 @@ class TestConfigurationView extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.specifications.selected.length !== 0) {
-            axios.all(this.props.specifications.selected.map(key => client.getSingleSpecification(key))).then(
+        if (this.props.apis.selected.length !== 0) {
+            axios.all(this.props.apis.selected.map(key => client.getSingleAPI(key))).then(
                 axios.spread((...specs) => {
                     specs.forEach((spec) => {
-                        this.props.dispatch(updateSpecification(spec.data.name,spec.data));
-                        this.props.dispatch(addSpecificationToTestValues(spec.data));
+                        this.props.dispatch(updateAPI(spec.data.name,spec.data));
+                        this.props.dispatch(addAPIToTestValues(spec.data));
                     });
                 })).finally(() => {
                 this.setState({
                     loading: false,
-                    selectedSpec: this.props.specifications.selected[0]
+                    selectedSpec: this.props.apis.selected[0]
                 });
             });
         } else {
@@ -63,14 +63,14 @@ class TestConfigurationView extends React.Component {
     }
 
     renderEditor() {
-        return <SpecificationEditor
-            spec={TestPlanReduxHelper.getSpecFromState(this.props.specifications, this.state.selectedSpec)}/>;
+        return <APIEditor
+            spec={TestPlanReduxHelper.getSpecFromState(this.props.apis, this.state.selectedSpec)}/>;
     }
 
     renderSpecs() {
-        return TestPlanReduxHelper.getSelectedSpecsFromState(this.props.specifications,this.props.specifications.selected).map(spec => {
+        return TestPlanReduxHelper.getSelectedSpecsFromState(this.props.apis,this.props.apis.selected).map(spec => {
             return (
-                <Specification key={spec.name} spec={spec} selectElement={this.selectSpec}/>
+                <API key={spec.name} spec={spec} selectElement={this.selectSpec}/>
             );
         });
     }
@@ -91,7 +91,7 @@ class TestConfigurationView extends React.Component {
             this.props.dispatch(addTestPlan(response.data.testId,testPlan,response.data.status));
             this.props.history.push("/tests/running/"+response.data.testId);
             this.props.dispatch(clearTestValues());
-            this.props.dispatch(clearSelectedSpecifications());
+            this.props.dispatch(clearSelectedAPIs());
         });
     }
 
@@ -134,6 +134,6 @@ class TestConfigurationView extends React.Component {
 }
 
 export default withRouter(connect((state) => ({
-    specifications: state.specifications,
+    apis: state.apis,
     testvalues: state.testvalues
 }))(TestConfigurationView));

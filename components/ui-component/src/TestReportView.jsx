@@ -88,10 +88,10 @@ const ReportFeature = ({feature}) => (
     </ListGroup>
 );
 
-const ReportSpec = connect((state) => ({specifications: state.specifications,}))(({spec,specName,specifications}) => (
+const ReportSpec = connect((state) => ({apis: state.apis,}))(({spec,specName,apis}) => (
     <div>
-        <h2>{specifications.specs[specName].title} <small>{specifications.specs[specName].version} </small></h2>
-        <p className={"text-muted"}>{specifications.specs[specName].description}</p>
+        <h2>{apis.specs[specName].title} <small>{apis.specs[specName].version} </small></h2>
+        <p className={"text-muted"}>{apis.specs[specName].description}</p>
         <br/>
         {spec.map(featurex => <ReportFeature feature={featurex}/>)}
     </div>
