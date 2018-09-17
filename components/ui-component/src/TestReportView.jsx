@@ -22,8 +22,6 @@ import {ListGroup, ListGroupItem, Button, Modal, Grid, Row, Col, Panel, Badge, P
 import AppBreadcrumbs from "./partials/AppBreadcrumbs";
 import '../public/css/report-style.scss'
 import {connect} from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import RequestBuilder from './utils/RequestBuilder';
 import TestReportHelper from './utils/TestReportHelper';
 import AttributeGroup from "./components/AttributeGroup";
@@ -46,12 +44,12 @@ const stepStatus = (steps) => {
 
     });
     if(status){
-        return (<p className="passedTag status-badge"><FontAwesomeIcon icon={faCheckCircle}/></p>) ;
+        return (<p className="passedTag status-badge"><i className="fas fa-check-circle"></i></p>) ;
     }else{
         //console.log(errorMessage);
         return (
             <div>
-                <p className="failedTag status-badge"><FontAwesomeIcon icon={faTimesCircle}/></p>
+                <p className="failedTag status-badge"><i className="fas fa-times-circle"></i></p>
                 <Panel className="error-panel" defaultExpanded={false}>
                     <Panel.Toggle componentClass="a" className="error-details-link">View details</Panel.Toggle>
                     <Panel.Collapse>
@@ -97,8 +95,8 @@ const ReportFeature = ({feature}) => (
             <Panel.Heading>
                 <div className="pull-right feature-result">
                 <span className={reportHelper.getFeatureResultStatus(feature, reportHelper).class}>
-                    <FontAwesomeIcon icon={reportHelper.getFeatureResultStatus(feature, reportHelper).status === "Passed"
-                        ? faCheckCircle : faTimesCircle}/>&nbsp;{reportHelper.getFeatureResultStatus(feature, reportHelper).status}</span>
+                    <i className={reportHelper.getFeatureResultStatus(feature, reportHelper).status === "Passed"
+                        ? "fas fa-check-circle" : "fas fa-times-circle"}></i>&nbsp;{reportHelper.getFeatureResultStatus(feature, reportHelper).status}</span>
                 </div>
                 <Panel.Title><h4 className="feature-title"><b>Feature:</b> {feature.name}</h4></Panel.Title>
                 <Panel.Toggle componentClass="a">View Scenarios</Panel.Toggle>
@@ -221,8 +219,8 @@ class TestReportView extends React.Component {
                             <p><b>Pass Rate</b> : {this.state.rate}%</p>
                             <LoaderComponent/>
                             <ProgressBar className="pass-rate-progress">
-                                <ProgressBar  striped bsStyle="success" now={this.state.rate} />
-                                <ProgressBar  striped bsStyle="danger" now={((this.state.passed + this.state.failed)>0)*100-this.state.rate} />
+                                <ProgressBar active striped bsStyle="success" now={this.state.rate} />
+                                <ProgressBar active striped bsStyle="danger" now={((this.state.passed + this.state.failed)>0)*100-this.state.rate} />
                             </ProgressBar>
                         </div>
                         <hr/>

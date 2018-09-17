@@ -22,12 +22,7 @@ import AppBreadcrumbs from "./partials/AppBreadcrumbs";
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {Table, Row, Col, Button, Glyphicon} from 'react-bootstrap';
-import RequestBuilder from './utils/RequestBuilder';
 import '../public/css/report-style.scss'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheckCircle, faTimesCircle, faPercent} from "@fortawesome/free-solid-svg-icons";
-const client = new RequestBuilder();
-
 
 const TestPlanRow = connect((state) => ({specifications: state.specifications.specs}))(({testPlan,specifications}) => (
     <tr align="left">
@@ -35,9 +30,9 @@ const TestPlanRow = connect((state) => ({specifications: state.specifications.sp
         <td>{testPlan.testPlan.lastRun}</td>
         <td><b>{testPlan.status}</b></td>
         <td className={"overall-results-block"}>
-            <p><span style={{color: "green"}}><FontAwesomeIcon icon={faCheckCircle}/> Passed : 6</span></p>
-            <p><span style={{color: "red"}}><FontAwesomeIcon icon={faTimesCircle}/> Failed : 3</span></p>
-            <p><span><FontAwesomeIcon icon={faPercent}/> Success Rate: 66.67%</span></p>
+            <p><span style={{color: "green"}}><i className="fas fa-check-circle"/> Passed : 6</span></p>
+            <p><span style={{color: "red"}}><i className="fas fa-times-circle"/> Failed : 3</span></p>
+            <p><span><i className="fas fa-percentage"/> Success Rate: 66.67%</span></p>
         </td>
         <td><Link to={"/tests/report/"+testPlan.testId}>Check Report</Link></td>
     </tr>
