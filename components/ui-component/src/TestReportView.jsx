@@ -44,12 +44,12 @@ const stepStatus = (steps) => {
 
     });
     if(status){
-        return (<p className="passedTag status-badge"><i className="fas fa-check-circle"></i></p>) ;
+        return (<p className="passedTag status-badge"><i className="fas fa-check-circle"/></p>) ;
     }else{
         //console.log(errorMessage);
         return (
             <div>
-                <p className="failedTag status-badge"><i className="fas fa-times-circle"></i></p>
+                <p className="failedTag status-badge"><i className="fas fa-times-circle"/></p>
                 <Panel className="error-panel" defaultExpanded={false}>
                     <Panel.Toggle componentClass="a" className="error-details-link">View details</Panel.Toggle>
                     <Panel.Collapse>
@@ -70,7 +70,7 @@ const stepStatus = (steps) => {
             </div>
         );
     }
-}
+};
 
 const FeatureElement = ({element}) => (
     <ListGroupItem>
@@ -92,11 +92,11 @@ const ElementStep = ({step}) => (
 
 const ReportFeature = ({feature}) => (
         <Panel defaultExpanded={false}>
-            <Panel.Heading>
+            <Panel.Heading className="scenario-background">
                 <div className="pull-right feature-result">
                 <span className={reportHelper.getFeatureResultStatus(feature, reportHelper).class}>
                     <i className={reportHelper.getFeatureResultStatus(feature, reportHelper).status === "Passed"
-                        ? "fas fa-check-circle" : "fas fa-times-circle"}></i>&nbsp;{reportHelper.getFeatureResultStatus(feature, reportHelper).status}</span>
+                        ? "fas fa-check-circle" : "fas fa-times-circle"}/>&nbsp;{reportHelper.getFeatureResultStatus(feature, reportHelper).status}</span>
                 </div>
                 <Panel.Title><h4 className="feature-title"><b>Feature:</b> {feature.name}</h4></Panel.Title>
                 <Panel.Toggle componentClass="a">View Scenarios</Panel.Toggle>
@@ -110,12 +110,13 @@ const ReportFeature = ({feature}) => (
 );
 
 const ReportSpec = connect((state) => ({specifications: state.specifications,}))(({spec,specName,specifications}) => (
-    <div>
-        <h2>{specifications.specs[specName].title} <small>{specifications.specs[specName].version} </small></h2>
-        <p className={"text-muted"}>{specifications.specs[specName].description}</p>
-        <br/>
-        {spec.map(featurex => <ReportFeature feature={featurex}/>)}
-    </div>
+    <Panel>
+        <Panel.Heading>
+            <h2>{specifications.specs[specName].title} <small>{specifications.specs[specName].version} </small></h2>
+            <p className={"text-muted"}>{specifications.specs[specName].description}</p>
+        </Panel.Heading>
+        <Panel.Body>{spec.map(featurex => <ReportFeature feature={featurex}/>)}</Panel.Body>
+    </Panel>
 ));
 
 class TestReportView extends React.Component {
